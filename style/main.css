@@ -1,0 +1,393 @@
+/* style/main.css */
+:root {
+	/* Dark Mode (Default) */
+	--bg: #0d1117;
+	--text: #c9d1d9;
+	--accent: #58a6ff;
+	--border: #30363d;
+	--box-bg: #161b22;
+	--header-text: #ffffff;
+	--font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+	--radius: 8px;
+}
+
+/* Light Mode Overrides */
+[data-theme="light"] {
+	--bg: #f6f8fa;
+	--text: #24292f;
+	--accent: #0969da;
+	--border: #d0d7de;
+	--box-bg: #ffffff;
+	--header-text: #1f2328;
+}
+
+html {
+	transition: background-color 0.4s ease;
+}
+
+body {
+	background-color: var(--bg);
+	color: var(--text);
+	font-family: var(--font-sans);
+	line-height: 1.7;
+	transition: background 0.3s, color 0.3s;
+	margin: 0;
+}
+
+.container {
+	max-width: 960px;
+	margin: 0 auto;
+	padding: 40px 24px;
+}
+
+h1 {
+	font-size: 2.1rem;
+	font-weight: 600;
+	letter-spacing: -0.02em;
+	margin: 0;
+	color: var(--header-text);
+}
+
+h2 {
+	font-size: 1.65rem;
+	font-weight: 500;
+	margin-bottom: 1rem;
+	color: var(--header-text);
+}
+
+h3 {
+	font-size: 1.25rem;
+	font-weight: 600;
+	color: var(--accent);
+}
+
+/* ====================== PROFESSIONAL HEADER ====================== */
+header {
+	border-bottom: 1px solid var(--border);
+	padding-bottom: 20px;
+	margin-bottom: 40px;
+}
+
+.header-content {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	max-width: 100%;
+}
+
+.main-nav {
+	display: flex;
+	align-items: center;
+	gap: 1.75rem;
+}
+
+.main-nav a {
+	color: var(--text);
+	text-decoration: none;
+	font-size: 0.95rem;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	padding: 6px 14px;
+	position: relative;
+	border-radius: 4px;
+	transition: all 0.2s ease;
+}
+
+.main-nav a:hover {
+	background-color: var(--box-bg);
+	color: var(--accent);
+}
+
+/* Active page indicator */
+.main-nav a[aria-current="page"] {
+	background-color: var(--box-bg);
+	color: var(--accent);
+	border-radius: var(--radius);
+}
+
+/* Theme toggle */
+#theme-toggle {
+	background: none;
+	border: 1px solid var(--border);
+	color: var(--text);
+	padding: 8px;
+	border-radius: 6px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 42px;
+	height: 42px;
+	transition: all 0.25s ease;
+}
+
+#theme-toggle:hover {
+	background-color: var(--box-bg);
+	border-color: var(--accent);
+}
+
+#theme-icon svg {
+	width: 22px;
+	height: 22px;
+	stroke: currentColor;
+	stroke-width: 2;
+}
+
+[data-theme="light"] #theme-toggle:hover {
+	background-color: #f0f2f5;
+}
+
+/* ====================== COMPONENTS ====================== */
+.terminal-box {
+	background: var(--box-bg);
+	border: 1px solid var(--border);
+	padding: 20px;
+	border-radius: 6px;
+	font-family: 'Courier New', monospace;
+}
+
+hr {
+	margin: 2.5rem 0;
+	border: 0;
+	border-top: 1px solid var(--border);
+	opacity: 0.6;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 1.5rem 0;
+}
+
+th {
+	text-align: left;
+	padding: 12px 15px;
+	border-bottom: 2px solid var(--accent);
+	text-transform: uppercase;
+	font-size: 0.85rem;
+	letter-spacing: 1px;
+}
+
+td {
+	padding: 15px;
+	vertical-align: top;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+	line-height: 1.6;
+}
+
+[data-theme="light"] td {
+	border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+main > * + * {
+	margin-top: 1.5rem;
+}
+
+/* Redaction Aesthetic */
+.redacted {
+	background-color: var(--text);
+	color: var(--text);
+	cursor: help;
+	position: relative;
+	display: inline-block;
+	user-select: none;
+}
+
+.redacted:hover::after {
+	content: "Institutional License Required for Clear-Text access";
+	position: absolute;
+	bottom: 125%;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: var(--box-bg);
+	color: var(--accent);
+	padding: 8px 12px;
+	border: 1px solid var(--accent);
+	border-radius: 4px;
+	font-family: var(--font-sans);
+	font-size: 0.75rem;
+	white-space: nowrap;
+	z-index: 10;
+	box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.redacted:hover::before {
+	content: "";
+	position: absolute;
+	bottom: 110%;
+	left: 50%;
+	transform: translateX(-50%);
+	border-width: 6px;
+	border-style: solid;
+	border-color: var(--accent) transparent transparent transparent;
+	z-index: 11;
+}
+
+/* ====================== VAULT SUMMARY STYLES ====================== */
+.vault-summary {
+	margin-top: 2rem;
+}
+
+.stats-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	gap: 1.5rem;
+	margin: 2rem 0 2.5rem 0;
+}
+
+.stats-grid > div {
+	background-color: var(--box-bg);
+	border: 1px solid var(--border);
+	border-radius: var(--radius);
+	padding: 1.5rem 1.25rem;
+	text-align: center;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.stats-grid > div:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 10px 25px -5px rgb(88 166 255 / 0.15);
+}
+
+.stats-grid strong {
+	display: block;
+	font-size: 1.35rem;
+	color: var(--accent);
+	margin-bottom: 6px;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+[data-theme="light"] .stats-grid > div {
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.volume-table {
+	margin-top: 1.5rem;
+}
+
+.volume-table td {
+	font-size: 1.05rem;
+	font-weight: 500;
+}
+
+.volume-table tr:hover {
+	background-color: var(--accent);
+	/* Note: background-opacity is not valid CSS, use rgba if needed, but background-color with variable is fine here */
+}
+
+[data-theme="light"] .volume-table tr:hover {
+	background-color: rgba(9, 105, 218, 0.08);
+}
+
+.archive-list {
+	max-height: 560px;
+	scrollbar-width: thin;
+	overflow-y: auto;
+	padding: 0 12px 12px 0;
+	border: 1px solid var(--border);
+	border-radius: 6px;
+	background-color: var(--box-bg);
+	margin-top: 1rem;
+}
+
+.archive-list li {
+	padding: 10px 14px;
+	border-bottom: 1px solid var(--border);
+	line-height: 1.5;
+	transition: background-color 0.2s;
+}
+
+.archive-list li:last-child {
+	border-bottom: none;
+}
+
+.archive-list li:hover {
+	background-color: rgba(88, 166, 255, 0.08);
+	border-radius: 4px;
+}
+
+[data-theme="light"] .archive-list li:hover {
+	background-color: rgba(9, 105, 218, 0.08);
+}
+
+/* ====================== FOOTER ====================== */
+footer {
+	margin-top: 60px;
+	font-size: 0.8rem;
+	color: #8b949e;
+	border-top: 1px solid var(--border);
+	padding-top: 20px;
+}
+
+/* ====================== MOBILE RESPONSIVENESS ====================== */
+@media (max-width: 640px) {
+	.header-content {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 1.25rem;
+	}
+	.main-nav { gap: 0.75rem; flex-wrap: wrap; }
+	.main-nav a { font-size: 0.9rem; padding: 4px 10px; }
+}
+
+/* ====================== LICENSING PRICING CARDS ====================== */
+.pricing-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+	gap: 1.75rem;
+	margin: 2.5rem 0;
+}
+
+.pricing-card {
+	background-color: var(--box-bg);
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	padding: 2rem;
+	display: flex;
+	flex-direction: column;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.pricing-card:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 10px 25px rgba(88, 166, 255, 0.15);
+}
+
+.pricing-card h4 {
+	margin: 0 0 1rem 0;
+	font-size: 1.35rem;
+	font-weight: 600;
+	line-height: 1.3;
+	color: var(--header-text);
+}
+
+.pricing-card h4 span {
+	display: block;
+	font-size: 1.1rem;
+	font-weight: 400;
+	color: var(--text);
+	opacity: 0.9;
+	margin-top: 4px;
+}
+
+.pricing-card .price {
+	font-size: 1.65rem;
+	font-weight: 600;
+	color: var(--accent);
+	margin: 1.25rem 0 1.5rem 0;
+	line-height: 1.2;
+}
+
+.pricing-card p {
+	flex-grow: 1;
+	margin-bottom: 1.5rem;
+	line-height: 1.6;
+}
+
+/* Light mode support */
+[data-theme="light"] .pricing-card {
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
